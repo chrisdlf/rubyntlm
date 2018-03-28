@@ -110,7 +110,13 @@ module NTLM
 
 
     def security_buffers
-      @alist.find_all{|n, f| f.instance_of?(SecurityBuffer)}
+      sb_with_pos, sb_without_pos =
+        @alist.each_with_object([[],[]]) do |sb, a|
+          next unless sb[1].instance_of?(SecurityBuffer)
+          sb[1].position.nil? ? a[1] << sb : a[0] << sb
+        end
+      sb_with_pos.sort! {|sb1, sb2| sb1[1].position <=> sb2[1].position}
+      sb_with_pos + sb_without_pos
     end
 
     def deflag

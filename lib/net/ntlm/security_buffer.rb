@@ -13,6 +13,7 @@ module Net
         super()
         @value  = opts[:value]
         @active = opts[:active].nil? ? true : opts[:active]
+        @position = opts[:position]
         @size = 8
       end
 
@@ -41,6 +42,10 @@ module Net
 
       def data_size
         @active ? @value.size : 0
+      end
+
+      def position
+        @position
       end
     end
 

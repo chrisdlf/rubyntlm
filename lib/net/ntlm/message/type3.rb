@@ -7,12 +7,12 @@ module Net
 
         string          :sign,          {:size => 8, :value => SSP_SIGN}
         int32LE         :type,          {:value => 3}
-        security_buffer :lm_response,   {:value => ""}
-        security_buffer :ntlm_response, {:value => ""}
-        security_buffer :domain,        {:value => ""}
-        security_buffer :user,          {:value => ""}
-        security_buffer :workstation,   {:value => ""}
-        security_buffer :session_key,   {:value => "", :active => false }
+        security_buffer :lm_response,   {:value => "", :position => 4}
+        security_buffer :ntlm_response, {:value => "", :position => 5}
+        security_buffer :domain,        {:value => "", :position => 1}
+        security_buffer :user,          {:value => "", :position => 2}
+        security_buffer :workstation,   {:value => "", :position => 3}
+        security_buffer :session_key,   {:value => "", :active => false, :position => 6 }
         int32LE         :flag,          {:value => 0, :active => false }
         string          :os_version,    {:size => 8, :active => false }
 
